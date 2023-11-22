@@ -363,9 +363,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  gravity: 10
-  terminalVelocity: 10
-  jumpVelocity: 5
+  gravity: 20
+  terminalVelocity: 20
+  jumpVelocity: 10
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

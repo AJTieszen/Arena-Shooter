@@ -27,29 +27,55 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Reset velocity
-        velocity = Vector3.zero;
-
-        // Apply Gravity
-        if (controller.isGrounded) vSpeed = 0;
-        else if (vSpeed > terminalVelocity * -1) vSpeed -= gravity * Time.deltaTime;
+        float forward = 0;
+        float strafe = 0;
 
         // Control movement
-        if (Input.GetKey(KeyCode.W)) velocity += Vector3.forward * speed;
-        if (Input.GetKey(KeyCode.A)) velocity += Vector3.left * speed;
-        if (Input.GetKey(KeyCode.S)) velocity += Vector3.back * speed;
-        if (Input.GetKey(KeyCode.D)) velocity += Vector3.right * speed;
-        if (Input.GetKey(KeyCode.Space) && controller.isGrounded) vSpeed = jumpVelocity;
+        if (Input.GetKey(KeyCode.W)) forward = speed;
+        if (Input.GetKey(KeyCode.A)) strafe = speed * -1;
+        if (Input.GetKey(KeyCode.S)) forward = speed * -1;
+        if (Input.GetKey(KeyCode.D)) strafe = speed;
+        
+        // Jump
+        if (Input.GetKey(KeyCode.Space))
+            jump();
 
         // Respawn
         if (Input.GetKeyDown(KeyCode.R))
-        {
-            controller.transform.position = startPosition;
-            vSpeed = 0;
-            Physics.SyncTransforms();
-        }
+            respawn();
 
         // Apply velocity
+        move(forward, strafe);
+    }
+
+    void respawn()
+    {
+        controller.transform.position = startPosition;
+        vSpeed = 0;
+        Physics.SyncTransforms();
+    }
+
+    void jump()
+    {
+        if (controller.isGrounded)
+        {
+            vSpeed = jumpVelocity;
+        }
+    }
+
+    void move (float forward, float strafe)
+    {
+        // Movement
+        velocity = Vector3.zero;
+
+        velocity += Vector3.forward * forward;
+        velocity += Vector3.right * strafe;
+
+        // Gravity
+        if (controller.isGrounded && vSpeed < 0) vSpeed = 0;
+        else if (vSpeed > terminalVelocity * -1) vSpeed -= gravity * Time.deltaTime;
+
+        // move character
         velocity.y = vSpeed;
         controller.Move(velocity * Time.deltaTime);
     }

@@ -35,6 +35,8 @@ public class Character : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) strafe = speed * -1;
         if (Input.GetKey(KeyCode.S)) forward = speed * -1;
         if (Input.GetKey(KeyCode.D)) strafe = speed;
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
         
         // Jump
         if (Input.GetKey(KeyCode.Space))
@@ -54,7 +56,6 @@ public class Character : MonoBehaviour
         vSpeed = 0;
         Physics.SyncTransforms();
     }
-
     void jump()
     {
         if (controller.isGrounded)
@@ -62,7 +63,6 @@ public class Character : MonoBehaviour
             vSpeed = jumpVelocity;
         }
     }
-
     void move (float forward, float strafe)
     {
         // Movement

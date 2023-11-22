@@ -7,3 +7,4 @@ A simple splitscreen arena shooter project to learn Unity
 | Movement 	| Not Implemented 	|      WASD      	|
 |   Jump   	| Not Implemented 	|      Space     	|
 |  Respawn 	| Not Implemented 	|        R       	|
+|    Quit   | Not Implemented   |       ESC       |

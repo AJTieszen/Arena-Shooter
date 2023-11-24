@@ -64,8 +64,17 @@ public class GameInput
         if (Input.GetKey(rightKey))
             move.x = 1f;
 
-        if(move.magnitude > 1)
-           move.Normalize();
+        if (move.magnitude > 1)
+            move.Normalize();
+
+        return move;
+    }
+    public Vector2 getCameraMovement()
+    {
+        Vector2 move = Vector2.zero;
+
+        move.x = (float)SFML.Window.Joystick.GetAxisPosition(player, Joystick.Axis.U) / 100f;
+        move.y = (float)SFML.Window.Joystick.GetAxisPosition(player, Joystick.Axis.V) / -100f;
 
         return move;
     }

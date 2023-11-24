@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Character : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Character : MonoBehaviour
     public float gravity;
     public float terminalVelocity;
     public float jumpVelocity;
+    public int playerId = 0;
 
     // Character status
     private float vSpeed = 0;
@@ -30,18 +32,19 @@ public class Character : MonoBehaviour
         float forward = 0;
         float strafe = 0;
 
-        // Control movement
+        // Keyboard Controls
         if (Input.GetKey(KeyCode.W)) forward = speed;
         if (Input.GetKey(KeyCode.A)) strafe = speed * -1;
         if (Input.GetKey(KeyCode.S)) forward = speed * -1;
         if (Input.GetKey(KeyCode.D)) strafe = speed;
+        if (Input.GetKey(KeyCode.Space)) jump();
+
+        // Gamepad Controls
+        Debug.Log("");
+
+        // Quit game
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
-        
-        // Jump
-        if (Input.GetKey(KeyCode.Space))
-            jump();
-
         // Respawn
         if (Input.GetKeyDown(KeyCode.R))
             respawn();

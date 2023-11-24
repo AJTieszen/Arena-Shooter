@@ -1,0 +1,16 @@
+{
+    "name": "org.nuget.sfml.audio",
+    "version": "2.5.1",
+    "displayName": "SFML.Net Audio",
+    "description": "Audio module of the SFML.Net library",
+    "unity": "2018.3",
+    "keywords": [
+        "sfml",
+        "sfml.net"
+    ],
+    "author": {
+        "name": "Laurent Gomila",
+        "email": "",
+        "url": "https://www.sfml-dev.org/"
+    }
+}

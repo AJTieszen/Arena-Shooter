@@ -9,6 +9,7 @@ public class Character : MonoBehaviour
     public float gravity;
     public float terminalVelocity;
     public float jumpVelocity;
+    public uint playerId = 0;
 
     // Character status
     private float vSpeed = 0;
@@ -16,38 +17,32 @@ public class Character : MonoBehaviour
     private Vector3 startPosition;
 
     private CharacterController controller;
-
+    private GameInput input;
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        input = new GameInput(playerId);
         startPosition = controller.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float forward = 0;
-        float strafe = 0;
+        GameInput.update();
 
-        // Control movement
-        if (Input.GetKey(KeyCode.W)) forward = speed;
-        if (Input.GetKey(KeyCode.A)) strafe = speed * -1;
-        if (Input.GetKey(KeyCode.S)) forward = speed * -1;
-        if (Input.GetKey(KeyCode.D)) strafe = speed;
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
-        
-        // Jump
-        if (Input.GetKey(KeyCode.Space))
+        Vector2 movement = input.getMovement();
+        if (input.isJumpPressed())
             jump();
 
-        // Respawn
+        if (input.isMenuPressed())
+            Application.Quit();
         if (Input.GetKeyDown(KeyCode.R))
+        {
             respawn();
+        }
 
-        // Apply velocity
-        move(forward, strafe);
+        move(movement);
     }
 
     void respawn()
@@ -63,13 +58,13 @@ public class Character : MonoBehaviour
             vSpeed = jumpVelocity;
         }
     }
-    void move (float forward, float strafe)
+    void move (Vector2 direction)
     {
         // Movement
         velocity = Vector3.zero;
 
-        velocity += Vector3.forward * forward;
-        velocity += Vector3.right * strafe;
+        velocity.z += direction.y * speed;
+        velocity.x += direction.x * speed;
 
         // Gravity
         if (controller.isGrounded && vSpeed < 0) vSpeed = 0;

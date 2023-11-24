@@ -1,0 +1,36 @@
+{
+    "managedList": [
+        {
+            "packageName": "SFML.Net",
+            "fileNames": []
+        },
+        {
+            "packageName": "SFML.Audio",
+            "fileNames": [
+                "SFML.Audio"
+            ]
+        },
+        {
+            "packageName": "SFML.Graphics",
+            "fileNames": [
+                "SFML.Graphics"
+            ]
+        },
+        {
+            "packageName": "SFML.System",
+            "fileNames": [
+                "SFML.System"
+            ]
+        },
+        {
+            "packageName": "SFML.Window",
+            "fileNames": [
+                "SFML.Window"
+            ]
+        },
+        {
+            "packageName": "CSFML",
+            "fileNames": []
+        }
+    ]
+}

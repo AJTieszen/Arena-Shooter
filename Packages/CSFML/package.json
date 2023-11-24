@@ -1,0 +1,16 @@
+{
+    "name": "org.nuget.csfml",
+    "version": "2.5.2",
+    "displayName": "CSFML",
+    "description": "This package contains the native libraries for the C port of SFML, used as a dependency for SFML.Net",
+    "unity": "2018.3",
+    "keywords": [
+        "sfml",
+        "csfml"
+    ],
+    "author": {
+        "name": "Laurent Gomila",
+        "email": "",
+        "url": "https://www.sfml-dev.org/"
+    }
+}

@@ -32,11 +32,15 @@ public class Character : MonoBehaviour
         GameInput.update();
 
         Vector2 movement = input.getMovement();
+        if (input.isJumpPressed())
+            jump();
 
         if (input.isMenuPressed())
             Application.Quit();
-        if (input.isJumpPressed())
-            jump();
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            respawn();
+        }
 
         move(movement);
     }

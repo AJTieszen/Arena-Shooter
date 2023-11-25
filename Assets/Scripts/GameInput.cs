@@ -76,6 +76,9 @@ public class GameInput
         move.x = (float)SFML.Window.Joystick.GetAxisPosition(player, Joystick.Axis.U) / 100f;
         move.y = (float)SFML.Window.Joystick.GetAxisPosition(player, Joystick.Axis.V) / -100f;
 
+        if (Input.GetKey(KeyCode.UpArrow)) move.y = 1;
+        if (Input.GetKey(KeyCode.DownArrow)) move.y = -1;
+
         return move;
     }
 }

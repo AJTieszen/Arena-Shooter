@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     // Character Settings
     public float speed;
@@ -17,12 +17,12 @@ public class Character : MonoBehaviour
     private Vector3 startPosition;
 
     private CharacterController controller;
-    private GameInput input;
+    private GameInput gameInput;
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        input = new GameInput(playerId);
+        gameInput = new GameInput(playerId);
         startPosition = controller.transform.position;
     }
 
@@ -31,16 +31,14 @@ public class Character : MonoBehaviour
     {
         GameInput.update();
 
-        Vector2 movement = input.getMovement();
-        if (input.isJumpPressed())
+        Vector2 movement = gameInput.getMovement();
+        if (gameInput.isJumpPressed())
             jump();
 
-        if (input.isMenuPressed())
+        if (gameInput.isMenuPressed())
             Application.Quit();
         if (Input.GetKeyDown(KeyCode.R))
-        {
             respawn();
-        }
 
         move(movement);
     }
